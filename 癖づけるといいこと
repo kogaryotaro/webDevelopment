@@ -51,3 +51,21 @@ Javascript
 ②キャメルケースが一般的　※単語区切りを大文字にする・最初は小文字
 ③分かりやすい変数名が大事　
 ④boolean変数の時は　is~ has~　とかを使う
+
+nullとundefinedの違い
+null：意図的に存在しないことを明示している。自分から定義する。ないことが分かっている
+undefined：JavaScript側も分からない
+
+比較演算
+文字の時はUNICODEの値を参照している
+・「＝＝」：型変換を行ってから比較する 
+※0 == false →true  null == undefined →true
+・「===」：型が異なる場合はfalse　※基本的にはこっちを採用する
+
+※Falsyな値 →　if文の条件文で変数を置くだけで判定できる。比較演算子がいらない
+""
+NaN
+null
+undefined
+0
+
