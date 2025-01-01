@@ -69,3 +69,12 @@ null
 undefined
 0
 
+配列
+indexがないところにアクセスしてもエラーにならない
+ex)
+let colors = ['red','blue'];
+colors[9] = 'yellow';
+console.log(colors);
+↑ red blue empty*7 yellow
+
+文字列は不変・配列は変更可能
