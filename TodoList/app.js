@@ -108,9 +108,13 @@ while (true) {
         }
         console.log('*****************');
     } else if (guess === 'delete') {
-        let deleteIndex = prompt('削除するTodoのインデックスを入力してください');
-        let deleteList = lists.splice(deleteIndex, 1);
-        console.log(`${deleteIndex +}番目の ${deleteList}を削除しました`);
+        let deleteIndex = parseInt(prompt('削除するTodoのインデックスを入力してください'));
+        if (!Number.isNaN(deleteIndex)) {
+            let deleteList = lists.splice(deleteIndex, 1);
+            console.log(`${deleteIndex}番目の ${deleteList}を削除しました`);
+        } else {
+            console.log('正確な削除するTodoのインデックスを入力してください');
+        }
     }
     guess = prompt('コマンドを入力して下さい(new, list, delete, quit)');
 }
