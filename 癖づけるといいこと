@@ -46,30 +46,30 @@ transform
 ==============================================
 Javascript
 
-変数の命名規則
+★変数の命名規則
 ①数字はNG
 ②キャメルケースが一般的　※単語区切りを大文字にする・最初は小文字
 ③分かりやすい変数名が大事　
 ④boolean変数の時は　is~ has~　とかを使う
 
-nullとundefinedの違い
+★nullとundefinedの違い
 null：意図的に存在しないことを明示している。自分から定義する。ないことが分かっている
 undefined：JavaScript側も分からない
 
-比較演算
+★比較演算
 文字の時はUNICODEの値を参照している
 ・「＝＝」：型変換を行ってから比較する 
 ※0 == false →true  null == undefined →true
 ・「===」：型が異なる場合はfalse　※基本的にはこっちを採用する
 
-※Falsyな値 →　if文の条件文で変数を置くだけで判定できる。比較演算子がいらない
+★Falsyな値 →　if文の条件文で変数を置くだけで判定できる。比較演算子がいらない
 ""
 NaN
 null
 undefined
 0
 
-配列
+★配列
 indexがないところにアクセスしてもエラーにならない
 ex)
 let colors = ['red','blue'];
@@ -77,32 +77,114 @@ colors[9] = 'yellow';
 console.log(colors);
 ↑ red blue empty*7 yellow
 
-文字列は不変・配列は変更可能
+★文字列は不変・配列は変更可能
 
-for(変数宣言 of 列挙できるオブジェクト){}
+★for(変数宣言 of 列挙できるオブジェクト){}
 列挙できるオブジェクトを順に取り出せる
 ※インデックスが必要な時はそのままのfor文を使用する
 
-thisの使い方
+★thisの使い方
 呼び出し側でthisの内容が変化する
 → thisの内容は.「ドット」の左側を指す　※何もない場合はwindowを指す
+※
 
-map関数
+★map関数
 const 変数名 = 配列名.map(function (要素の一時変数名){
     return 処理;
 })
 
-アロー関数
+★アロー関数
+コールバック関数内でthisを使用するときに有効
+※function(){}で定義するとその中でのthisとなってしまい
+呼び出すときにthisの内容がwindowに変更されるから
 中身の処理が一行の時はreturnは省略可能
 
-setTimeout(()=>{
+★setTimeout(()=>{
     //処理
 }, 秒数)※何秒後に関数内処理を実行する
 
-setInterval(()=>{
+★setInterval(()=>{
     //処理
 }, 秒数)※秒数毎に処理を実行する
 clearInterval(id)※setIntervalが持つidを渡すことでIntervalを止める
 
-配列名.every(関数);　※要素がすべてが関数を満たしていたらtrueを返す
-配列名.some(関数);  ※要素のうちどれか一つでも関数を見たセガtrueを返す
+★配列名.every(関数);　※要素がすべてが関数を満たしていたらtrueを返す
+★配列名.some(関数);  ※要素のうちどれか一つでも関数を見たセガtrueを返す
+
+★reduceメソッド
+配列の各要素から一つの値を返す 最大値や最小値を出すこともできる
+ex)配列内の数字の合計値
+[3, 4, 5, 6, 7].reduce((accumulator, currentValue) => {
+    return accumulator + currentValue;
+});
+1回目　　accumulator = 3   currentValue = 4  return 7
+2回目　　accumulator = 7   currentValue = 5  return 12
+3回目　　accumulator = 12   currentValue = 6  return 18
+4回目　　accumulator = 18   currentValue = 7  return 25
+
+ex)初期値ありバージョン
+[3, 4, 5, 6, 7].reduce((accumulator, currentValue) => {
+    return accumulator + currentValue;
+}, 100);
+1回目　　accumulator = 100   currentValue = 3  return 103
+2回目　　accumulator = 103   currentValue = 4  return 107
+3回目　　accumulator = 107   currentValue = 5  return 112
+4回目　　accumulator = 112   currentValue = 6  return 118
+5回目　　accumulator = 118   currentValue = 7  return 125
+
+★デフォルト引数
+function 関数名(num1, num2 = 2 //初期値){
+    return num1 + num2;
+}
+※指定する順番は大事・デフォルトは基本的に末尾に書くのが普通(省略しやすいから)
+
+★スプレッド構文
+...列挙可能なオブジェクト※配列・String →　要素個々を展開する
+
+★配列リテラルにおけるスプレッド構文
+const abc = [a, b, c];
+const def = [d, e, f];
+
+const abcdefg = [...abc, ...def, 'g']; //自分の好きな項目を好きに配列に組み込める
+abcdefg = [a, b, c, d, e, f, g]
+
+★オブジェクトにおけるスプレッド構文
+const abc = {
+    a: a, 
+    b: b, 
+    c: c
+    };
+const  abcde = {
+    ...abc,
+    d: d,
+    e: e
+};
+※新しいオブジェクトを返すので、元のオブジェクトが変更されない
+
+★rest構文 引数の個数にかかわらず「...パラメータ名」とすることで
+配列化することができる
+
+★配列の分割代入
+const [変数名１, 変数名2, 変数名3, ...変数名4] = 配列
+変数名1 = 配列[0]  変数名2 = 配列[1]  変数名 = 配列[0] ~ 配列[2] 以外
+
+★オブジェクトの分割代入
+const { プロパティ名１, プロパティ名２ }  = オブジェクト名; // 変数名はプロパティ名にする
+プロパティ名１ = オブジェクト名.プロパティ名１
+※const {プロパティ名１： 自分で設定したい変数名} = オブジェクト名; 
+//自分で設定したい変数名にできる 
+//プロパティがない場合 「プロパティ名 = デフォルト値」にするとデフォルト値を設定できる
+
+★パラメータの分割代入
+ex)
+const user = {
+    firstName: 'taro',
+    lastName: 'sato'
+}
+
+function fullName({ firstName, lastName}{ // ここでオブジェクトの分割代入をしている
+    return `${firstName} + ${lastName}`;
+})
+
+console.log(fullName(user));
+→taro sato
