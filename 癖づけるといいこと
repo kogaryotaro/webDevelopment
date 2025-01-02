@@ -82,3 +82,27 @@ console.log(colors);
 for(変数宣言 of 列挙できるオブジェクト){}
 列挙できるオブジェクトを順に取り出せる
 ※インデックスが必要な時はそのままのfor文を使用する
+
+thisの使い方
+呼び出し側でthisの内容が変化する
+→ thisの内容は.「ドット」の左側を指す　※何もない場合はwindowを指す
+
+map関数
+const 変数名 = 配列名.map(function (要素の一時変数名){
+    return 処理;
+})
+
+アロー関数
+中身の処理が一行の時はreturnは省略可能
+
+setTimeout(()=>{
+    //処理
+}, 秒数)※何秒後に関数内処理を実行する
+
+setInterval(()=>{
+    //処理
+}, 秒数)※秒数毎に処理を実行する
+clearInterval(id)※setIntervalが持つidを渡すことでIntervalを止める
+
+配列名.every(関数);　※要素がすべてが関数を満たしていたらtrueを返す
+配列名.some(関数);  ※要素のうちどれか一つでも関数を見たセガtrueを返す
