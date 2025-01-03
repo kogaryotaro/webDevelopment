@@ -1,0 +1,18 @@
+DOM
+①取得　②操作　の順番
+
+①取得方法
+★getElementById('id')
+★getElementsByTagName('Tagname')
+★getElementsByClassName('classname')
+
+★querySelector('') ※idの時は# classの時は. tagの時はなし
+※最初の要素をとってくる 属性指定は可能
+★querySelectorAll('')
+※すべてをとってくる
+
+②操作
+★innerText　document上で見えているものを操作する
+★textContent  対象の要素に含まれるすべてを操作する
+★innerHTML  HTMLを含めてすべての要素を操作できる 
+※+=等で今あるものにHTMLを追加できる
