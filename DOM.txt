@@ -16,3 +16,37 @@ DOM
 ★textContent  対象の要素に含まれるすべてを操作する
 ★innerHTML  HTMLを含めてすべての要素を操作できる 
 ※+=等で今あるものにHTMLを追加できる
+
+★getAttribute(属性名)
+※ただ値を取得するだけ。変数に格納して変更しようとしても無理
+★setAttribute(属性名, 変更したい値)
+
+★スタイルについて ※スタイル変更の際はキャメルケース ex)backgroundColor
+変更したいとき　　→　　要素.style.プロパティ名 = '値'; ←クォートで囲う
+要素の最終的な取得   →　　getComputedStyle(要素).プロパティ名;
+
+★要素のクラスを操作　　→　　要素.classList.add('クラス名'); クラス名を追加
+                     →　　要素.classList.remove('クラス名'); クラス名を削除する
+                     →　　要素.classList.toggle('クラス名');  クラス名付与を切り替える
+
+★要素に関わる別要素を取得する
+要素.parentElement 　→　要素の親要素を見る
+要素.children  →  要素の子要素を見る(複数の配列のようなものになる(forで回す))
+要素.nextElementSibling  →　　要素の次の兄弟要素を見る
+要素.previousElementSibling  →　　要素の一つ前の兄弟要素を見る
+
+★要素を作成する
+document.creatElement('tag名'); 中身が空の要素を作成
+
+★要素を追加する
+document.要素.appendChild(要素);　要素をある要素の子要素として追加する
+要素.append('テキスト')(変数)  要素の子要素にテキスト・変数を追加
+要素.prepend('テキスト')(変数)  要素の子要素の先頭にテキスト・変数を追加
+
+要素.insertAdjacentElement('beforebegin', 要素) ある要素の直前兄弟要素として追加する
+※ 要素.before('要素')と一緒
+要素.insertAdjacentElement('afterend', 要素) ある要素の直後兄弟要素として追加する
+※ 要素.after('要素')と一緒
+
+★要素を削除する
+要素.remove()　　要素自身を削除
