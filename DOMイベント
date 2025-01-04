@@ -1,0 +1,15 @@
+DOMイベント
+
+★※非推奨 直接HTMLに書き込む方法 →　インラインイベント 
+tagの属性のところに「on」とするとイベント名が出てくる
+""内にjavascriptが直接書くことができる
+
+★jsファイルでのプロパティ
+要素.onclick = function(){
+    //処理
+}
+
+★addEventListener ※複数の関数を同じイベントに追加できる
+要素.addEventListener('イベント名', function(){  //定義した関数でもよい
+    //処理
+})
