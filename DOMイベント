@@ -25,3 +25,38 @@ tagの属性のところに「on」とするとイベント名が出てくる
 })
 eの中にイベントの詳細情報が載っている
 ※キーボードイベントの時、e.keyで押したキーの意味・e.codeは押したキーの位置
+
+★preventDefault
+e.preventDefault とすることで
+イベントに設定されているデフォルトの動きを止められる
+
+★appendとappendChild
+append →　そのまま変数だったりテキストを子要素として追加
+appendChild →　tagとして追加する※何も特に操作していない素のもの
+
+★フォームイベント
+フォーム要素.elements.name属性 → name属性がついた要素を取得できる
+
+★input・changeイベント
+要素.addEventListener('input', function(){
+    //処理
+}) →　何かが入力されるごとにイベント発火する
+ex)
+input.addEventListener('input', function(){
+    p.innerText = input.value;
+})　入力した内容をリアルタイムでpタグに表示する
+
+要素.addEventListener('change', function(){
+    //処理
+}) →　入力した後フォーカスを外すとイベント発火する
+
+★バブリングを止める方法(子要素のイベント発生時に親要素まで伝わること)
+        <p onclick="alert('段落クリック')">
+            <button onclick="alert('ボタンクリック')">クリック</button>
+        </p>
+button.addEventListener('click', function(e){
+    e.stopPropagation();  
+})  →これ以上親要素に影響を及ぼさないようにする
+
+★リアルタイムに追加したものに対してイベントを付与する
+親要素のtargetで指定する　→　イベントデリゲーション
