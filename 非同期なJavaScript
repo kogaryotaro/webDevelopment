@@ -1,0 +1,128 @@
+★JavaScriptはコールスタック
+関数が複数呼び出されているときにスタック呼び出し(Last In First Out)
+隣呼び出されていく仕組み
+
+★JavaScriptはシングルスレッド
+一度に一つの作業しかできない
+setTimeout等で処理を管理するのはブラウザ(WebAPI)がやっている
+
+★コールバック関数はJavaScriptとは切り離せない存在
+ある処理が終わった後に関数を実行したい場合は
+関数に関数を引数として渡す必要がある
+順番に情報を取得する際
+成功したら次、成功したら次だけではなく
+それぞれに対しての失敗も考慮しなければならないため
+コードが読みづらくなってしまう
+
+★promise
+未来のある時点で値を持つことを約束してくれるオブジェクト
+ex)晩御飯を完食したらデザートも食べていいよ　→　約束した時点ではデザートは確約されていない
+promiseオブジェクトに成功したとき・失敗したときそれぞれで呼び出される
+コールバック関数を登録することができる
+
+★promiseの状態
+①pending: 初期の状態
+②fulfilled: 成功して完了した状態
+③rejected: 失敗した状態
+
+★promise登録の仕方 ※thenの中で次のpromiseオブジェクトを返す
+promiseオブジェクト
+    .then((success)=>{
+        //　成功したときの処理
+        console.log(success);  //promiseオブジェクトで設定している処理を呼び出す
+        return promiseオブジェクト
+    })
+    .then((success) => {
+        // 次に成功したときの処理
+        console.log(success);  //promiseオブジェクトで設定している処理を呼び出す
+        return promiseオブジェクト
+    })
+        .then((success) => {
+        // 次に成功したときの処理
+        console.log(success);  //promiseオブジェクトで設定している処理を呼び出す
+    })
+    .catch((err) => {
+        // 　失敗したときの処理
+        console.log(err);  //promiseオブジェクトで設定している処理を呼び出す
+    })
+
+★promiseの作り方(基本的に作られたものを使うことが多い)
+new Promise(resolve, reject) => {
+}
+ex)
+const fakeRequest = (url) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve();
+        }, 1000)
+    });
+}
+
+
+★async function
+async function 関数名(){
+    throw new Error('問題が起きました'); //rejectの値
+    return ~~~~;  // resolveの値
+}
+const 変数名 = async () => {
+    throw new Error('問題が起きました'); //rejectの値
+    return ~~~~;  // resolveの値
+}
+★await function
+async 関数の中で使用する
+promiseを返す関数を結果が出るまで待つことができる
+※thenを使用しなくても連続的処理ができるようになる
+＝＝＝＝＝＝＝＝＝＝基本的な使い方＝＝＝＝＝＝＝＝＝＝＝
+async function 関数名() {
+    try{
+        const 変数名 = await 関数; // resolveの値が変数に入る
+    } catch(e) {
+        console.log(e);  // rejectの値が e に入る
+    }
+}
+
+ex)
+const login = async (username, password) => {
+    if(!username || !password){
+        throw new Error('ユーザー名またはパスワードがありません');
+    }
+    if(password === 'secret'){
+        return 'ようこそ';
+    }
+
+    throw new Error('パスワードが間違っています。');
+}
+
+login('hoge')
+    .then((msg) => {
+        console.log('ログイン成功');
+        console.log(msg)
+    })
+    .catch((err) => {
+        console.log('エラーーー')
+        console.log('err');
+    })
+↑　エラーーー　ユーザー名またはパスワードがありません
+
+login('hoge', 'hogehoge')
+    .then((msg) => {
+        console.log('ログイン成功');
+        console.log(msg)
+    })
+    .catch((err) => {
+        console.log('エラーーー')
+        console.log('err');
+    })
+↑　エラーーー　パスワードが間違っています。
+
+login('hoge', 'secret')
+    .then((msg) => {
+        console.log('ログイン成功');
+        console.log(msg)
+    })
+    .catch((err) => {
+        console.log('エラーーー')
+        console.log('err');
+    })
+↑　ログイン成功　ようこそ
+
