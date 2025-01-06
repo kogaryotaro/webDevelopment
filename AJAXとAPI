@@ -1,0 +1,22 @@
+★AJAX
+同じページ上にいながらリクエストができる
+
+★API
+HTTPで情報のやり取りをするためのインターフェース。
+WEBAPIのことを指す。HTMLではなくデータそのものをさす。
+
+★JSON
+APIが返すフォーマット  Java Script Object Notation
+※JSONには undefined がない
+ex)
+JSON.parse(データ); // JSONデータをJavascriptオブジェクトに変換できる
+JSON.stringify(オブジェクト);  //  JavascriptオブジェクトをJSONデータに変換
+
+★HTTPメソッドによって動作の違いがある
+
+★HTTPステータスコード
+2~~ 成功, 3~~ リダイレクト, 4~~ クライアントエラー, 5~~ サーバーエラー
+
+★クエリストリング  
+URLに記載される ?color=green&age=25　とかのこと
+バックエンドに情報を渡すためのもの
