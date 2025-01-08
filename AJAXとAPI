@@ -20,3 +20,10 @@ JSON.stringify(オブジェクト);  //  JavascriptオブジェクトをJSONデ�
 ★クエリストリング  
 URLに記載される ?color=green&age=25　とかのこと
 バックエンドに情報を渡すためのもの
+
+★axios
+axiosをスクリプトタグから実装する
+axios.get('URL', オブジェクト);
+↑axios.メソッド名('URL', オブジェクト)
+※オブジェクト内で指定するのはAPIで指定するように指示があるもの
+ex)params, header
