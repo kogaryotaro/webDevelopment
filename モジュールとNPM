@@ -42,3 +42,9 @@ npm i franc langs → npm i franc@5.0.0 langs
 var franc = require('franc');
 ↓
 import {franc} from 'franc'
+
+★基本的にrequireはもう使えない
+import {langs} from 'langs';
+$ node index.js 'こんにちは。'
+で「こんにちは」を受け取りたい場合は
+const input = process.argv[2];
