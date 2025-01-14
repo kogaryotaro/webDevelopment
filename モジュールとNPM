@@ -26,3 +26,19 @@ npm init
 ルートディレクトリの直下に設定することがほとんど
 dependencies 
 ↑この情報からプロジェクトで使用しているnpmが分かる
+
+package.json
+基本的にNode_modulesはアップロードしないので
+package.jsonのdependenciesが重要となってくる
+package.jsonは存在するが、Node_modulesが存在しないため
+プログラムが実行できない場合
+→ package.jsonがあるパッケージで npm install　を実行する
+dependenciesがインストールされてプログラムが実行できる
+
+francパッケージについて
+ver6.0.0以降
+npm i franc langs → npm i franc@5.0.0 langs
+もしくは
+var franc = require('franc');
+↓
+import {franc} from 'franc'
