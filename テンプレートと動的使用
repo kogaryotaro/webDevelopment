@@ -25,3 +25,7 @@ app.set('views', path.join(__dirname, 'views'));
 ★静的ファイルの提供
 app.use(express.static('public'));
 テンプレートで指定するときは'public'下の何を使うかを記載する
+
+★パーシャル(include)
+<%- include('パス') %> でそっくりそのままejsファイルを移せる
+テンプレートからテンプレートを読み込めるようにする

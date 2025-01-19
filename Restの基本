@@ -1,0 +1,31 @@
+getとpost
+GET: 情報の取得。データベースが更新されることはない
+POST: データを作るときに使用。※Postデータには種類がある
+
+app.use(express.urlencoded({ extended: true }));
+↑フォームから送られてきたデータをパースする(扱えるようにする)
+app.use(express.json());
+↑Jsonデータをパースする
+
+★REST
+分散システムにおいて
+複数のソフトウェアを連携させるのに適した設計原則の一つ
+勝手にAPIとかを作らないようにするための理念や思想がまとまったもの
+RESTFUL　←RESTにのっとって作られたもの
+サーバーサイドデータをCRUD可能なリソースとして扱う
+URLを一つにまとめる？みたいな意味
+
+★リダイレクト
+res.redirect('/パス名');
+パス名のところにGETリクエストを送信できる
+
+★UUID
+任意のIDを作ることができるnpm
+const { v4: uuid } = require('uuid');
+uuid()　←これで任意の場所に作れるようになる
+
+★PATCH
+部分的にリソースを更新する
+
+★npm install method-override
+↑でformのmethodでget post以外を使用することができる
