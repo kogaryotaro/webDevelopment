@@ -1,0 +1,5 @@
+★mongo → mongosh
+./MongoDB/Server/7.0/bin/mongod --dbpath ~/deveCamp/data/db/
+
+普通に使ったらできた
+mongosh で起動開始したけど権限付与ができてないみたい
