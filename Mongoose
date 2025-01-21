@@ -1,0 +1,55 @@
+ODM
+object data mapper
+データベースから送られてくるデータを
+Javascriptのオブジェクトにマッピング(変換)する
+データ検証や複雑なクエリを
+Javascriptで作成できる
+
+→mongoDBをより強力に使用するツール
+
+★モデル
+mongoDBとのやり取りをスムーズ且便利に行うためのもの
+１コレクション(DB側)：１モデル
+モデル作成前に。。
+★Schemaを作成する
+↑あるデータの形を定義するもの
+const 変数名 = new mongoose.Schema({オブジェクト})
+※mongooseの世界に存在する概念
+
+モデル作成(クラス)
+const 変数名(大文字) = mongoose.model('Movie', movieSchema);
+大文字から始める。単数形
+mongooseはデータを小文字の複数形(movies)で扱うことになる
+※これによりnewでインスタンス作成、mongoDBにインスタンスの情報を保存できる
+インスタンス変数.save()
+↑DBに保存(insert)できる
+
+保存(insert)
+モデル名.insertMany([{オブジェクト}]);
+
+検索
+非同期処理になる
+モデル名.find({year: { $lt: 1990}})
+.then(data => console.log(data))
+thenでつなげることができる
+パスで指定されたidから検索する↓
+findById('自動生成されたIDをそのまま渡す')
+.then(//処理)
+
+更新
+モデル名.updateOne({year: 1990}, {title: 変えたいもの})
+第一引数：指定するためのオブジェクト
+第二引数：変更したいオブジェクト
+※処理の結果しか返ってこない
+
+モデル名.findOneAndUpdate({year: 1990}, {title: 変えたいもの}, {new: boolean})
+第三引数：false→更新前のオブジェクトが返ってくる
+        true→更新後のオブジェクトが返ってくる
+
+削除
+モデル名.updateOne({year: 1990})
+第一引数：指定するためのオブジェクト
+※処理の結果しか返ってこない
+
+モデル名.findOneAndDelete({year: 1990})
+※削除したオブジェクトが返ってくる
