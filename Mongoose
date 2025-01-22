@@ -53,3 +53,56 @@ findById('自動生成されたIDをそのまま渡す')
 
 モデル名.findOneAndDelete({year: 1990})
 ※削除したオブジェクトが返ってくる
+
+バリデーション
+①スキーマでは「required:true」で必須入力にすることができる
+①type属性は指定した型になりえるものを使用可能
+③インスタンス時にスキーマにない情報を追加しても保存されない
+④「default:値」のオプションで指定しなかった場合の挙動を指定
+⑤ enum[]で配列内に記載のないものを挿入できなくなる
+ex) size: {
+        type: String,
+        enum: ['S', 'M', 'L', 'LL']
+    }
+⑥スキーマのオブジェクトとして配列を渡すことができる
+ex) categories : [String]
+⑦データのネストもできる
+ex) qty: {
+        instore: {
+            type: Number,
+            default: 100
+        },
+        onLine: {
+            type: Number,
+            default: 0
+        }
+}
+
+★更新時のバリデーション
+デフォルトではスキーマ設定時のバリデーションが機能しない
+→ 第3引数に「runValidators: true」を設定する必要がある
+
+バリデーションエラー時のメッセージ
+↑ 配列にしてメッセージを指定
+ex) price: {
+        type: Number,
+        min: [0, 'priceは0より大きい値にしてください']
+    }
+
+インスタンスメソッド
+定義方法：スキーマ名.methods.メソッド名 = function() ={
+    //処理 ※thisは呼び出したインスタンス
+}
+スタティックメソッド
+定義方法：スキーマ名.statics.メソッド名 = function() ={
+    //処理 ※thisは呼び出したモデル
+}
+
+バーチャルメソッド
+存在しないプロパティを設定できる
+ex) personSchema.virtual('fullName').get(function(){
+    return `${this.first} ${this.last}`;
+})
+
+ミドルウェア
+特定の処理の間に自分の処理を挟み込める
