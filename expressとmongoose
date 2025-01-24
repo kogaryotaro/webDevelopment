@@ -1,0 +1,30 @@
+初期データ
+seeds.jsを使用したときは
+コード内でmongooseを呼び出す
+別途 node seeds.js で起動させて
+DB挿入する
+
+バリデーションについて
+複数のデータを挿入する際
+一つでもバリデーションを抜けられないと
+一つもデータは登録されない
+
+※実践編※
+
+スタティックメソッドを使用するときは
+基本的にルーティングをasyncにする
+
+一覧ページ
+→find({})
+
+詳細ページ
+→const { id } = req.params
+const product = await product.findById(id)
+
+フォームから送られてきた値を使用するとき
+app.use(express.urlencoded({extended: true}));
+req.body
+
+更新作業
+findByIdAndUpdate
+第3引数に runValidators: ture, new true //更新後のデータを扱う場合
