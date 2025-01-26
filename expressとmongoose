@@ -28,3 +28,12 @@ req.body
 更新作業
 findByIdAndUpdate
 第3引数に runValidators: ture, new true //更新後のデータを扱う場合
+
+select
+option の属性に selected を付けることで
+最初から選択されているようにする
+
+クエリストリング
+クエリストリングでわたってきたものは
+req.queryで取得できる
+?category='ガンプラ'　→　const {category} = req.query

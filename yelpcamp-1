@@ -1,0 +1,14 @@
+データ配列からランダムな一個の値を取り出すとき
+ランダムなindexを生成して
+それを使用して取り出す
+ex)
+const index = Math.floor(Math.random() * seeds.length)
+const randomSeed = seeds[index];
+
+seedsデータを挿入する関数実行後に自動で閉じるようにする
+then()でつないで
+mongoose.connection.close();
+
+renderとredirect
+render: ディレクトリ内の場所を指定
+redirect: パスを指定
