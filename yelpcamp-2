@@ -1,0 +1,4 @@
+flexboxの使い方
+※footerが画面の中ほどに来てしまう時
+①bodyの範囲をvh-100にする
+②footerにmt-auto「余白分全部margin-topへ」

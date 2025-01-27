@@ -1,0 +1,37 @@
+express
+expressにはエラーが発生したときに
+デフォルトのエラー処理を行うミドルウエアが存在している
+
+エラー処理のミドルウエア
+引数は err req res next　の4つ
+app.use((err, req, res, next) => {
+    console.log('***********************************');
+    console.log('**************エラー*****************');
+    console.log('***********************************');
+    res.status(500).send('エラーが発生しました')
+})
+
+複数のエラー処理をしたい場合
+app.use((err, req, res, next) => {
+    next(err);
+})
+
+エラークラス
+エラーメッセージとステータスコードを表示できる
+エラークラスを作成することができる
+ex)
+class MyError extends Error {
+    constructor(message, status) {
+        super();
+        this.message = message;
+        this.status = status;
+    }
+
+エラー処理ミドルウェアの中身
+ex)
+app.use((err, req, res, next) => {
+    const { status = 500, message = '何らかのエラーが起きました' } = err;
+    res.status(status).send(message);
+})
+↑　呼び出すとき
+throw new MyError('探しているページはありません', 404);
